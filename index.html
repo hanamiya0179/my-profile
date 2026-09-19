@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>マイプロフィール</title>
+     <!-- 💡 ここを追加：1つ外に出て、cssフォルダのstyle.cssを読み込む -->
+    <link rel="stylesheet" href="../css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+    <header>
+        <h1>花宮 零のポートフォリオ</h1>
+    </header>
+
+    <!-- 💡 ここからが画面に表示される中身です -->
+    <h1>未経験でSaaS導入支援エンジニアになりました。いずれ開発系の案件でも働けるようにプログラミングを学習中です。</h1>
+
+    <div>
+        <h2>プロフィール</h2>
+        <p>名前：花宮　零</p>
+        <p>趣味：筋トレ、ゲーム、プログラミング学習</p>
+    </div>
+
+        <div class="gaming-card">
+        <h2>遊んでいるゲーム一覧</h2>
+        <!-- 💡 ここからリスト（箇条書き）の始まり -->
+        <ul>
+            <li>PCゲーム　DBD、マイクラ</li>
+            <li>switch　モンハンサンブレイク、スマブラ</li>
+            <li>スマホ　モンスト、プロセカ、ホロドリ、アーケア、グルミク</li>
+        </ul>
+    </div>
+        <!-- 🎰 ガチャ（おみくじ）コーナー -->
+    <div>
+        <h2>今日遊ぶゲームガチャ</h2>
+        <!-- 💡 クリックするためのボタン -->
+        <button id="gacha-btn">ガチャを引く！</button>
+        <!-- 💡 結果を表示するための空っぽの枠 -->
+        <p id="gacha-result">ボタンを押すとここにゲームが表示されるよ</p>
+    </div>
+
+
+
+    <div>
+        <h2>目指すエンジニア像</h2>
+        <p>ただコードを書けるだけのエンジニアではなく周りのモチベーション維持や知識、技術のアウトプットのできる組織を強くするエンジニアを目指しています。</p>
+    </div>
+
+    <div>
+        <h2>使える言語やツール</h2>
+        <p>HTML、CSS、JavaScript、Linux、Docker、DB、Java</p>
+    </div>
+
+    <script src="../js/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+/* =======================================================
+   💥 1. プロ必須の「全画面余白リセット」設定
+   ======================================================= */
+* {
+    box-sizing: border-box; /* すべての要素の幅の計算を綺麗に整える */
+    margin: 0;              /* 全ての要素の邪魔な初期マージンをゼロにする */
+    padding: 0;             /* 全ての要素の邪魔な初期パディングをゼロにする */
+}
+
+/* 💡 ページ全体のデザインを設定 */
+body {
+    background-color: #202124; /* 背景を濃いグレーにする */
+    color: #ffffff;            /* 文字の色を白にする */
+    font-family: sans-serif;   /* 文字のフォントを読みやすくする */
+    padding: 20px;             /* 画面の文字が端にピタッとくっつかないように内側に余白を作る */
+}
+
+/* =======================================================
+   🌟 修正版ヘッダー（右側の余白を完全に破壊する最終設定）
+   ======================================================= */
+header {
+    background-image: url("../img/header3.png");
+    background-size: cover;
+    background-position: center;
+    
+    /* 📐 1. 縦の幅と横の幅の設定 */
+    width: 100vw;                 /* 💡 100% から「100vw（画面の横幅いっぱい）」に変更！ */
+    height: 700px;                
+    
+    /* 🚨 2. bodyの余白を完全に無視して画面の端に強制密着させる魔法の計算式 */
+    margin-top: -20px;            /* 上のbodyの余白(20px)をピッタリ打ち消す */
+    margin-bottom: 40px;          /* 下のカードとの間にしっかり隙間を作る */
+    
+    /* 🌟 左右のマージンをこの計算式に変えることで、右側の余白が完全に消え去ります */
+    margin-left: calc(50% - 50vw); 
+    margin-right: calc(50% - 50vw);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 💡 一番大きな見出し（h1）のデザイン */
+h1 {
+    text-align: center;      /* 文字を画面の中央（真ん中）に寄せる */
+    font-size: 24px;         /* 文字の大きさを調整 */
+    line-height: 1.6;        /* 行と行の間隔を広げて読みやすくする */
+    margin-bottom: 40px;     /* 下に少し広めの隙間を作る */
+    color: #e8eaed;          /* ほんの少しだけ柔らかい白にする */
+}
+
+/* 💡 プロフィールや目標を囲む「ボックス（div）」のデザイン */
+div {
+    background-color: #303134; /* ボックスの背景を少し明るいグレーにする */
+    max-width: 800px;         /* ボックスが横に広がりすぎないように制限 */
+    margin: 0 auto 20px auto; /* ボックス自体を中央に寄せ、下に20pxの隙間を作る */
+    padding: 24px;            /* ボックスの内側にゆったりとした余白を作る */
+    border-radius: 8px;       /* ボックスの角を丸くする */
+    border: 1px solid #4a4a4a; /* うっすらとした枠線をつける */
+}
+
+/* 📁 ボックスの中の見出し（h2）のデザイン */
+h2 {
+    color: #8ab4f8;          /* 見出しの色をオシャレなアクセントブルーにする */
+    margin-top: 0;           /* 上の余計な隙間を削る */
+    border-bottom: 2px solid #8ab4f8; /* 見出しの下に線（アンダーライン）を引く */
+    padding-bottom: 8px;     /* 線と文字の間に少し隙間を作る */
+}
+
+/* 🌈 1. RGB風に色が変化する「パラパラ漫画（アニメーション）」の定義 */
+@keyframes gaming-color {
+    0%   { color: #ff0000; border-color: #ff0000; } 
+    33%  { color: #00ff00; border-color: #00ff00; } 
+    66%  { color: #0000ff; border-color: #0000ff; } 
+    100% { color: #ff0000; border-color: #ff0000; } 
+}
+
+/* 🎯 2. ゲーム一覧のカードの中のh2にアニメーションを適用 */
+.gaming-card h2 {
+    animation: gaming-color 4s linear infinite; 
+}
+
+/* ⚡ 1. 激レア用の激しい点滅と拡大のパラパラ漫画 */
+@keyframes rare-flash {
+    0%   { transform: scale(1); color: #ff007f; text-shadow: 0 0 10px #ff007f; }
+    50%  { transform: scale(1.1); color: #ffff00; text-shadow: 0 0 20px #ffff00; }
+    100% { transform: scale(1); color: #ff007f; text-shadow: 0 0 10px #ff007f; }
+}
+
+/* 🎯 2. 「rare-effect」という目印がついた時だけ発動するルール */
+.rare-effect {
+    animation: rare-flash 0.3s linear infinite; 
+    font-weight: bold;
+    font-size: 22px;
+    display: inline-block; 
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ここまではPC向けのデザイン */
+.container {
+  display: flex; /* 横並び */
+}
+
+/* 📱 ここから下がスマホ向け（画面幅が768px以下のとき） */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* 縦並びに変更 */
+  }
+}
+
+/* 🎰 モンスト風ガチャボタン（オレンジ四角バージョン） */
+#gacha-btn {
+  /* ボタンの大きさと文字の設定 */
+  display: block;
+  margin: 20px auto;       /* 💡 0 から auto に変更：ボタンを画面の中央に配置して安定させます */
+  padding: 15px 40px;
+  font-size: 22px;         /* 文字を少し大きめに */
+  font-weight: 900;        /* 文字を限界まで太く */
+  color: #ffffff;          /* 文字の色は白 */
+
+  touch-action: manipulation; /* 💡 追加：スマホでのタップ時のダブルタップズーム（300msの遅延）を無効化して、一瞬で反応させます */
+
+  /* 〜（これより下の設定は今のままでOKです！）〜 */
+
+  
+
+  /* モンスト王道の「鮮やかなオレンジから黄色」へのグラデーション背景 */
+  background: linear-gradient(to bottom, #ffea00 0%, #ff6d00 40%, #e65100 100%);
+  
+  /* 立体感を出すための金〜オレンジの太い枠線 */
+  border: 4px solid #ffb300;
+  border-radius: 6px;      /* カプセル型をやめて、少しだけ角を丸めた力強い四角形に */
+  
+  /* ボタンの下側にさらに濃い赤茶色の「厚み（立体感）」を出す影 */
+  box-shadow: 0 6px 0 #bf360c, 0 8px 15px rgba(0, 0, 0, 0.5);
+  
+  /* クリックしやすくするための設定 */
+  cursor: pointer;
+  position: relative;      /* 💡 文字の動きをコントロールするために追加 */
+  top: 0;                  /* 💡 初期位置 */
+  transition: all 0.05s ease; /* 💡 0.1s から 0.05s に：格闘ゲームのように一瞬で「カチッ」と反応するように高速化 */
+}
+
+/* 👇 ボタンの上にマウスが乗ったとき（少し明るく発光させる） */
+#gacha-btn:hover {
+  filter: brightness(1.1) drop-shadow(0 0 8px rgba(255, 234, 0, 0.6));
+}
+
+/* 👇 ボタンを実際にクリックした（押し込んだ）ときのアニメーション */
+#gacha-btn:active {
+  top: 4px;                /* 💡 ボタン自体をガチッと4px下に移動させる */
+  box-shadow: 0 2px 0 #bf360c, 0 2px 5px rgba(0, 0, 0, 0.5); /* 💡 下の「厚み（影）」を6pxから2pxに減らして、ペチャンコに潰れた感を出す */
+}
+
