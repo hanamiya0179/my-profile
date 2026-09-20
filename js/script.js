@@ -65,3 +65,13 @@ gachaBtn.addEventListener("click", function() {
         
     }, 1000); // 💡 1000ミリ秒 ＝ 1秒
 });
+
+// 🍔 ハンバーガーメニューの開閉スイッチ機能
+const menuBtn = document.getElementById("menu-btn");
+const navMenu = document.getElementById("nav-menu");
+
+menuBtn.addEventListener("click", function() {
+    // ボタンとメニューに「open」というクラスを付けたり消したり（トグル）する
+    menuBtn.classList.toggle("open");
+    navMenu.classList.toggle("open");
+});
