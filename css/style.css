@@ -173,6 +173,23 @@ img {
     overflow-wrap: break-word;
   }
 
+  ul {
+    list-style-position: inside; /* 「・」を内側に入れる魔法の一行 */
+    padding-left: 0;             /* 左側の不要な隙間をカット */
+  }
+
+  li {
+    margin-bottom: 8px;          /* スマホの画面でリストの間が詰まって見づらいのを防ぐ隙間 */
+  }
+
+  /* 3. ガチャボタンをスマホの指で一番押しやすいサイズにする */
+  #gacha-btn {
+    width: 90%;
+    max-width: 340px;
+    font-size: 18px;
+    padding: 12px 20px;
+  }
+
 
   /* 3. ガチャボタンをスマホの指で一番押しやすいサイズにする */
   #gacha-btn {
