@@ -168,7 +168,11 @@ img {
     width: 92%; /* 画面の横幅92%にして、左右に4%ずつの余白を作る */
     margin: 0 auto 20px auto; /* 中央寄せ */
     padding: 16px; /* 中の文字の余白も少しタイトにしてスッキリ */
+    /* 💡 ここを追加：英語や長い単語も枠の端で綺麗に自動改行させる設定 */
+    word-break: break-all;
+    overflow-wrap: break-word;
   }
+
 
   /* 3. ガチャボタンをスマホの指で一番押しやすいサイズにする */
   #gacha-btn {
