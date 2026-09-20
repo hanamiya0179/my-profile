@@ -146,13 +146,6 @@ img {
   font-weight: 900;        /* 文字を限界まで太く */
   color: #ffffff;          /* 文字の色は白 */
 
-  /* モンスト特有の「太い黒フチ」をつける */
-  text-shadow: 
-    3px 3px 0px #000000, -3px -3px 0px #000000, 
-    3px -3px 0px #000000, -3px 3px 0px #000000,
-    0px 4px 4px rgba(0, 0, 0, 0.6); 
-  letter-spacing: 1px;
-
   touch-action: manipulation; /* スマホでのタップ時の遅延を無効化して、一瞬で反応させます */
 
   /* モンスト王道の「鮮やかなオレンジから黄色」へのグラデーション背景 */
