@@ -5,8 +5,8 @@ document.addEventListener("touchstart", function() {}, {passive: true});
 const games = [
     { name: "PC: DBD", rare: false },
     { name: "PC: マイクラ", rare: false },
-    { name: "Switch: モンスターハンターサンブレイク 🐉", rare: false },
-    { name: "Switch: スマブラ 💥", rare: false },
+    { name: "Switch: モンスターハンターサンブレイク", rare: false },
+    { name: "Switch: スマブラ", rare: false },
     { name: "スマホ: モンスト", rare: false },
     { name: "スマホ: プロセカ", rare: false },
     { name: "さくっちいじめ (集団リンチ)", rare: true }//激レア枠

@@ -22,6 +22,7 @@ header {
     background-image: url("../img/header3.png");
     background-size: cover;
     background-position: center;
+    position: relative;           /* 💡 メニューの配置基準にするためPC側に追加 */
     
     /* 📐 1. 縦の幅と横の幅の設定 */
     width: 100vw;                 /* 💡 100% から「100vw（画面の横幅いっぱい）」に変更！ */
@@ -38,6 +39,36 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+/* =======================================================
+   🍔 【PC用】メニューバー＆ハンバーガーメニューのデザイン
+   ======================================================= */
+/* 💡 PC向けのナビゲーション（ヘッダーの右上に綺麗に横並び） */
+.nav-menu {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 20px; /* メニュー同士の隙間 */
+}
+.nav-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.2s;
+}
+.nav-menu a:hover {
+    color: #8ab4f8; /* マウスを乗せたら青くする */
+}
+
+/* 💡 スマホ用ボタン（PCでは隠しておく） */
+.menu-btn {
+    display: none;
 }
 
 /* 💡 一番大きな見出し（h1）のデザイン */
@@ -115,6 +146,12 @@ img {
   font-weight: 900;        /* 文字を限界まで太く */
   color: #ffffff;          /* 文字の色は白 */
 
+  /* モンスト特有の「太い黒フチ」をつける */
+  text-shadow: 
+    3px 3px 0px #000000, -3px -3px 0px #000000, 
+    3px -3px 0px #000000, -3px 3px 0px #000000,
+    0px 4px 4px rgba(0, 0, 0, 0.6); 
+  letter-spacing: 1px;
 
   touch-action: manipulation; /* スマホでのタップ時の遅延を無効化して、一瞬で反応させます */
 
@@ -140,7 +177,7 @@ img {
   filter: brightness(1.1) drop-shadow(0 0 8px rgba(255, 234, 0, 0.6));
 }
 
-/* 👇 ボタンを実際にクリックした（押し込んだ）ときのアニメーション */
+/* 👇 ボタンを実際にクリックした（押し込んだ）ときのアニュアル */
 #gacha-btn:active {
   top: 4px;                /* ボタン自体をガチッと4px下に移動させる */
   box-shadow: 0 2px 0 #bf360c, 0 2px 5px rgba(0, 0, 0, 0.5); /* 下の「厚み（影）」を6pxから2pxに減らして、ペチャンコに潰れた感を出す */
@@ -168,7 +205,6 @@ img {
     width: 92%; /* 画面の横幅92%にして、左右に4%ずつの余白を作る */
     margin: 0 auto 20px auto; /* 中央寄せ */
     padding: 16px; /* 中の文字の余白も少しタイトにしてスッキリ */
-    /* 💡 ここを追加：英語や長い単語も枠の端で綺麗に自動改行させる設定 */
     word-break: break-all;
     overflow-wrap: break-word;
   }
@@ -184,49 +220,63 @@ img {
 
   /* 3. ガチャボタンをスマホの指で一番押しやすいサイズにする */
   #gacha-btn {
-    width: 90%;
-    max-width: 340px;
-    font-size: 18px;
-    padding: 12px 20px;
-  }
-
-
-  /* 3. ガチャボタンをスマホの指で一番押しやすいサイズにする */
-  #gacha-btn {
     width: 90%; /* スマホ画面の横幅90%の大きなボタンにする */
     max-width: 340px; /* 大きくなりすぎない制限 */
     font-size: 18px; /* スマホに合わせた文字の大きさ */
     padding: 12px 20px;
   }
-}
 
-/* =======================================================
-   🎰 【新規追加】ガチャのド派手演出用アニメーション
-   ======================================================= */
+  /* 🍔 スマホ用ハンバーガーボタン（三本線）を表示 */
+  .menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 30px;
+    height: 25px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 100; /* 一番手前に表示 */
+  }
+  .menu-btn span {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
 
-/* 📳 ① ボタンがブルブル震えるパラパラ漫画 */
-@keyframes shake-animation {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  20% { transform: translate(-3px, 2px) rotate(-1deg); }
-  40% { transform: translate(3px, -1px) rotate(1deg); }
-  60% { transform: translate(-2px, -2px) rotate(0deg); }
-  80% { transform: translate(2px, 1px) rotate(1deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
+  /* 🍔 スマホの時のメニュー（最初は画面の外側に隠しておく） */
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%; /* 💡 100%右にずらして画面の外に隠す */
+    width: 70%;
+    height: 100vh;
+    background-color: rgba(48, 49, 52, 0.95); /* 高級感のある半透明グレー */
+    padding-top: 80px;
+    transition: all 0.3s;
+    z-index: 90;
+  }
+  .nav-menu ul {
+    flex-direction: column; /* 縦並びに変更 */
+    align-items: center;
+    gap: 40px;
+  }
+  .nav-menu a {
+    font-size: 20px; /* スマホ用に文字を大きく */
+  }
 
-/* 💡 JavaScriptでこのクラスがボタンについた時だけ震える */
-.btn-shake {
-  animation: shake-animation 0.1s linear infinite !important;
-  filter: brightness(1.2); /* 震えている間、少し発光させる */
-}
+  /* 💡 ボタンが押されたら（openクラスがついたら）メニューを画面内に引っ張り出す */
+  .nav-menu.open {
+      right: 0;
+  }
 
-/* ⚡ ③ 画面全体が一瞬ピカッと白く光るパラパラ漫画 */
-@keyframes flash-animation {
-  0% { background-color: #ffffff; } /* 一瞬真っ白に */
-  100% { background-color: #202124; } /* 元の濃いグレーに戻る */
-}
-
-/* 💡 JavaScriptでこのクラスがbodyについた瞬間だけフラッシュする */
-.screen-flash {
-  animation: flash-animation 0.4s ease-out;
+  /* 💡 ボタンが押されたら三本線を「×」の形に変形させるアニメーション */
+  .menu-btn.open span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+  .menu-btn.open span:nth-child(2) { opacity: 0; } /* 真ん中の線を消す */
+  .menu-btn.open span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
 }
