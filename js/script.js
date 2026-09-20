@@ -1,39 +1,67 @@
-// 📦 1. ゲームをすべて1つの箱（配列）に統合する（これで確率は完全に均等になります）
+// 📱 スマホ用タッチ遅延対策（以前追加したもの）
+document.addEventListener("touchstart", function() {}, {passive: true});
+
+// 🎮 ガチャに登場するゲームのリスト
 const games = [
-    "DBD (PC)",
-    "マイクラ (PC)",
-    "モンハンサンブレイク (Switch)", // 💎 特別な演出をさせたいゲーム
-    "スマブラ (Switch)",
-    "モンスト (スマホ)",
-    "プロセカ (スマホ)",
-    "ホロドリ (スマホ)",
-    "アーケア (スマホ)",
-    "グルミク (スマホ)",
-    "さくっちいじめ (集団リンチ)"
+    { name: "PC: DBD", rare: false },
+    { name: "PC: マイクラ", rare: false },
+    { name: "Switch: モンスターハンターサンブレイク 🐉", rare: false },
+    { name: "Switch: スマブラ 💥", rare: false },
+    { name: "スマホ: モンスト", rare: false },
+    { name: "スマホ: プロセカ", rare: false },
+    { name: "さくっちいじめ (集団リンチ)", rare: true }//激レア枠
 ];
 
-// 🎯 2. HTMLのボタンと、結果を表示する場所をJavaScriptに教えてあげる
-const btn = document.getElementById("gacha-btn");
-const resultText = document.getElementById("gacha-result");
+// 🧱 画面の要素（ボタンや文字）を取得
+const gachaBtn = document.getElementById("gacha-btn");
+const gachaResult = document.getElementById("gacha-result");
 
-// ⚡ 3. ボタンがクリックされたときの処理
-btn.addEventListener("click", function() {
+// 🎰 ボタンがクリックされた時の処理
+gachaBtn.addEventListener("click", function() {
     
-    // 🎲 箱の中から完全に均等な確率で1つ選ぶ
-    const randomIndex = Math.floor(Math.random() * games.length);
-    const chosenGame = games[randomIndex];
+    // 1. 連打防止（ガチャ中はボタンを押せなくする）
+    gachaBtn.disabled = true;
     
-    // 🌟 選ばれたゲームの名前が「さくっち」と完全に一致するかどうかで条件分岐する
-    if (chosenGame === "さくっちいじめ (集団リンチ)") {
-        // 🎉 【さくっちが出たときだけ発動！】
-        resultText.textContent = `🎰 本日のオススメ：💥超激レア出現!!💥  ${chosenGame} `;
-        resultText.classList.add("rare-effect"); // 派手な演出の目印をつける
-    } else {
-        // 💧 【さくっち以外のすべてのゲームのとき】
-        resultText.textContent = `🎰 本日のオススメ：【 ${chosenGame} 】`;
-        resultText.classList.remove("rare-effect"); // 演出の目印を剥ぎ取る
-    }
+    // 2. 結果画面を「ガチャを引いている最中…」の表示にする
+    gachaResult.textContent = "ストライクショットーーー！！！";
+    gachaResult.className = ""; // 一度演出の見た目をリセット
+    
+    // 📳 3. ボタンに「ブルブル震える」目印を付ける（CSSが発動！）
+    gachaBtn.classList.add("btn-shake");
+    
+    // ⏳ 4. 【1秒のタメ】1000ミリ秒（1秒）待ってから、中身のプログラムを実行する
+    setTimeout(function() {
+        
+        // 📳 震える目印を外す（ボタンを元の状態に戻す）
+        gachaBtn.classList.remove("btn-shake");
+        
+        // 🎲 ランダムにゲームを1つ選ぶ
+        const randomIndex = Math.floor(Math.random() * games.length);
+        const selectedGame = games[randomIndex];
+        
+        // 📢 画面に選ばれたゲーム名を表示する
+        gachaResult.textContent = `結果：${selectedGame.name}`;
+        
+        // ✨ もし選ばれたゲームが「激レア（rare: true）」だった場合
+        if (selectedGame.rare) {
+            // 🎯 文字をピカピカ光らせる
+            gachaResult.className = "rare-effect";
+            
+            // ⚡ 【新演出】画面全体（body）にフラッシュの目印を一瞬付ける
+            document.body.classList.add("screen-flash");
+            
+            // フラッシュのアニメーションが終わる頃（0.4秒後）に目印を消す（次また光らせるため）
+            setTimeout(function() {
+                document.body.classList.remove("screen-flash");
+            }, 400);
+            
+        } else {
+            // 普通のゲームだった場合は演出なし
+            gachaResult.className = "";
+        }
+        
+        // 🔓 ガチャが終わったので、ボタンをまた押せるようにする
+        gachaBtn.disabled = false;
+        
+    }, 1000); // 💡 1000ミリ秒 ＝ 1秒
 });
-
-// 📱 スマホでボタンを押したときのアニメーション（:active）を瞬間発動させる設定
-document.addEventListener("touchstart", function() {}, {passive: true});

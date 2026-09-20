@@ -199,3 +199,34 @@ img {
     padding: 12px 20px;
   }
 }
+
+/* =======================================================
+   🎰 【新規追加】ガチャのド派手演出用アニメーション
+   ======================================================= */
+
+/* 📳 ① ボタンがブルブル震えるパラパラ漫画 */
+@keyframes shake-animation {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-3px, 2px) rotate(-1deg); }
+  40% { transform: translate(3px, -1px) rotate(1deg); }
+  60% { transform: translate(-2px, -2px) rotate(0deg); }
+  80% { transform: translate(2px, 1px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* 💡 JavaScriptでこのクラスがボタンについた時だけ震える */
+.btn-shake {
+  animation: shake-animation 0.1s linear infinite !important;
+  filter: brightness(1.2); /* 震えている間、少し発光させる */
+}
+
+/* ⚡ ③ 画面全体が一瞬ピカッと白く光るパラパラ漫画 */
+@keyframes flash-animation {
+  0% { background-color: #ffffff; } /* 一瞬真っ白に */
+  100% { background-color: #202124; } /* 元の濃いグレーに戻る */
+}
+
+/* 💡 JavaScriptでこのクラスがbodyについた瞬間だけフラッシュする */
+.screen-flash {
+  animation: flash-animation 0.4s ease-out;
+}
