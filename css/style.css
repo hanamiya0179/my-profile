@@ -22,17 +22,17 @@ header {
     background-image: url("../img/header3.png");
     background-size: cover;
     background-position: center;
-    position: relative;           /* 💡 メニューの配置基準にするためPC側に追加 */
+    position: relative;           /* メニューの配置基準にするためPC側に追加 */
     
     /* 📐 1. 縦の幅と横の幅の設定 */
-    width: 100vw;                 /* 💡 100% から「100vw（画面の横幅いっぱい）」に変更！ */
+    width: 100vw;                 /* 100% から「100vw（画面の横幅いっぱい）」に変更！ */
     height: 700px;                
     
     /* 🚨 2. bodyの余白を完全に無視して画面の端に強制密着させる魔法の計算式 */
     margin-top: -20px;            /* 上のbodyの余白(20px)をピッタリ打ち消す */
     margin-bottom: 40px;          /* 下のカードとの間にしっかり隙間を作る */
     
-    /* 🌟 左右のマージンをこの計算式に変えることで、右側の余白が完全に消え去ります */
+    /* 左右の余白を完全に消し去る魔法の計算式 */
     margin-left: calc(50% - 50vw); 
     margin-right: calc(50% - 50vw);
     
@@ -44,7 +44,7 @@ header {
 /* =======================================================
    🍔 【PC用】メニューバー＆ハンバーガーメニューのデザイン
    ======================================================= */
-/* 💡 PC向けのナビゲーション（ヘッダーの右上に綺麗に横並び） */
+/* PC向けのナビゲーション（ヘッダーの右上に綺麗に横並び） */
 .nav-menu {
     position: absolute;
     top: 20px;
@@ -66,7 +66,7 @@ header {
     color: #8ab4f8; /* マウスを乗せたら青くする */
 }
 
-/* 💡 スマホ用ボタン（PCでは隠しておく） */
+/* スマホ用ボタン（PCでは隠しておく） */
 .menu-btn {
     display: none;
 }
@@ -98,7 +98,7 @@ h2 {
     padding-bottom: 8px;     /* 線と文字の間に少し隙間を作る */
 }
 
-/* 🌈 1. RGB風に色が変化する「パラパラ漫画（アニメーション）」の定義 */
+/* 🌈 RGB風に色が変化する「パラパラ漫画（アニメーション）」の定義 */
 @keyframes gaming-color {
     0%   { color: #ff0000; border-color: #ff0000; } 
     33%  { color: #00ff00; border-color: #00ff00; } 
@@ -106,19 +106,19 @@ h2 {
     100% { color: #ff0000; border-color: #ff0000; } 
 }
 
-/* 🎯 2. ゲーム一覧のカードの中のh2にアニメーションを適用 */
+/* ゲーム一覧のカードの中のh2にアニメーションを適用 */
 .gaming-card h2 {
     animation: gaming-color 4s linear infinite; 
 }
 
-/* ⚡ 1. 激レア用の激しい点滅と拡大のパラパラ漫画 */
+/* ⚡ 激レア用の激しい点滅と拡大のパラパラ漫画 */
 @keyframes rare-flash {
     0%   { transform: scale(1); color: #ff007f; text-shadow: 0 0 10px #ff007f; }
     50%  { transform: scale(1.1); color: #ffff00; text-shadow: 0 0 20px #ffff00; }
     100% { transform: scale(1); color: #ff007f; text-shadow: 0 0 10px #ff007f; }
 }
 
-/* 🎯 2. 「rare-effect」という目印がついた時だけ発動するルール */
+/* 「rare-effect」という目印がついた時だけ発動するルール */
 .rare-effect {
     animation: rare-flash 0.3s linear infinite; 
     font-weight: bold;
@@ -136,9 +136,10 @@ img {
   display: flex; /* 横並び */
 }
 
-/* 🎰 モンスト風ガチャボタン（オレンジ四角バージョン） */
+/* =======================================================
+   🎰 モンスト風ガチャボタン（オレンジ四角バージョン）
+   ======================================================= */
 #gacha-btn {
-  /* ボタンの大きさと文字の設定 */
   display: block;
   margin: 20px auto;       /* ボタンを画面の中央に配置して安定させます */
   padding: 15px 40px;
@@ -146,34 +147,63 @@ img {
   font-weight: 900;        /* 文字を限界まで太く */
   color: #ffffff;          /* 文字の色は白 */
 
-  touch-action: manipulation; /* スマホでのタップ時の遅延を無効化して、一瞬で反応させます */
+  touch-action: manipulation; /* スマホでのタップ時の遅延を無効化 */
 
   /* モンスト王道の「鮮やかなオレンジから黄色」へのグラデーション背景 */
   background: linear-gradient(to bottom, #ffea00 0%, #ff6d00 40%, #e65100 100%);
   
   /* 立体感を出すための金〜オレンジの太い枠線 */
   border: 4px solid #ffb300;
-  border-radius: 6px;      /* カプセル型をやめて、少しだけ角を丸めた力強い四角形に */
+  border-radius: 6px;      
   
   /* ボタンの下側にさらに濃い赤茶色の「厚み（立体感）」を出す影 */
   box-shadow: 0 6px 0 #bf360c, 0 8px 15px rgba(0, 0, 0, 0.5);
   
-  /* クリックしやすくするための設定 */
   cursor: pointer;
-  position: relative;      /* 文字の動きをコントロールするために追加 */
-  top: 0;                  /* 初期位置 */
-  transition: all 0.05s ease; /* 格闘ゲームのように一瞬で「カチッ」と反応するように高速化 */
+  position: relative;      
+  top: 0;                  
+  transition: all 0.05s ease; 
 }
 
-/* 👇 ボタンの上にマウスが乗ったとき（少し明るく発光させる） */
+/* 👇 ボタンの上にマウスが乗ったとき */
 #gacha-btn:hover {
   filter: brightness(1.1) drop-shadow(0 0 8px rgba(255, 234, 0, 0.6));
 }
 
-/* 👇 ボタンを実際にクリックした（押し込んだ）ときのアニュアル */
+/* 👇 ボタンを実際にクリックした（押し込んだ）ときのアニメーション */
 #gacha-btn:active {
-  top: 4px;                /* ボタン自体をガチッと4px下に移動させる */
-  box-shadow: 0 2px 0 #bf360c, 0 2px 5px rgba(0, 0, 0, 0.5); /* 下の「厚み（影）」を6pxから2pxに減らして、ペチャンコに潰れた感を出す */
+  top: 4px;                
+  box-shadow: 0 2px 0 #bf360c, 0 2px 5px rgba(0, 0, 0, 0.5); 
+}
+
+/* =======================================================
+   💥 【復活】ガチャのド派手演出用アニメーション設定
+   ======================================================= */
+/* 📳 ① ボタンがブルブル震えるパラパラ漫画 */
+@keyframes shake-animation {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  20% { transform: translate(-3px, 2px) rotate(-1deg); }
+  40% { transform: translate(3px, -1px) rotate(1deg); }
+  60% { transform: translate(-2px, -2px) rotate(0deg); }
+  80% { transform: translate(2px, 1px) rotate(1deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* 💡 JavaScriptでこのクラスがボタンについた時だけ震える */
+.btn-shake {
+  animation: shake-animation 0.1s linear infinite !important;
+  filter: brightness(1.2); 
+}
+
+/* ⚡ ③ 画面全体が一瞬ピカッと白く光るパラパラ漫画 */
+@keyframes flash-animation {
+  0% { background-color: #ffffff; } 
+  100% { background-color: #202124; } 
+}
+
+/* 💡 JavaScriptでこのクラスがbodyについた瞬間だけフラッシュする */
+.screen-flash {
+  animation: flash-animation 0.4s ease-out;
 }
 
 /* =======================================================
@@ -184,10 +214,10 @@ img {
     flex-direction: column; /* 縦並びに変更 */
   }
   
-  /* 1. ヘッダーをスマホの画面幅にピッタリ合わせる（横スクロール防止） */
+  /* 1. ヘッダーをスマホの画面幅にピッタリ合わせる */
   header {
     width: 100%;
-    height: 400px; /* スマホでは縦幅を少しコンパクトにして見やすく */
+    height: 400px; 
     margin-left: 0;
     margin-right: 0;
     margin-top: 0;
@@ -195,27 +225,27 @@ img {
 
   /* 2. プロフィールなどのカード（div）の左右にほどよい隙間を作る */
   div {
-    width: 92%; /* 画面の横幅92%にして、左右に4%ずつの余白を作る */
-    margin: 0 auto 20px auto; /* 中央寄せ */
-    padding: 16px; /* 中の文字の余白も少しタイトにしてスッキリ */
+    width: 92%; 
+    margin: 0 auto 20px auto; 
+    padding: 16px; 
     word-break: break-all;
     overflow-wrap: break-word;
   }
 
   ul {
-    list-style-position: inside; /* 「・」を内側に入れる魔法の一行 */
-    padding-left: 0;             /* 左側の不要な隙間をカット */
+    list-style-position: inside; /* 「・」を内側に入れる */
+    padding-left: 0;             
   }
 
   li {
-    margin-bottom: 8px;          /* スマホの画面でリストの間が詰まって見づらいのを防ぐ隙間 */
+    margin-bottom: 8px;          
   }
 
   /* 3. ガチャボタンをスマホの指で一番押しやすいサイズにする */
   #gacha-btn {
-    width: 90%; /* スマホ画面の横幅90%の大きなボタンにする */
-    max-width: 340px; /* 大きくなりすぎない制限 */
-    font-size: 18px; /* スマホに合わせた文字の大きさ */
+    width: 90%; 
+    max-width: 340px; 
+    font-size: 18px; 
     padding: 12px 20px;
   }
 
@@ -232,7 +262,7 @@ img {
     background: none;
     border: none;
     cursor: pointer;
-    z-index: 100; /* 一番手前に表示 */
+    z-index: 100; 
   }
   .menu-btn span {
     width: 100%;
@@ -246,30 +276,30 @@ img {
   .nav-menu {
     position: fixed;
     top: 0;
-    right: -100%; /* 💡 100%右にずらして画面の外に隠す */
+    right: -100%; 
     width: 70%;
     height: 100vh;
-    background-color: rgba(48, 49, 52, 0.95); /* 高級感のある半透明グレー */
+    background-color: rgba(48, 49, 52, 0.95); 
     padding-top: 80px;
     transition: all 0.3s;
     z-index: 90;
   }
   .nav-menu ul {
-    flex-direction: column; /* 縦並びに変更 */
+    flex-direction: column; 
     align-items: center;
     gap: 40px;
   }
   .nav-menu a {
-    font-size: 20px; /* スマホ用に文字を大きく */
+    font-size: 20px; 
   }
 
-  /* 💡 ボタンが押されたら（openクラスがついたら）メニューを画面内に引っ張り出す */
+  /* 💡 ボタンが押されたらメニューを画面内に引っ張り出す */
   .nav-menu.open {
       right: 0;
   }
 
-  /* 💡 ボタンが押されたら三本線を「×」の形に変形させるアニメーション */
+  /* 💡 ボタンが押されたら三本線を「×」の形に変形させる */
   .menu-btn.open span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
-  .menu-btn.open span:nth-child(2) { opacity: 0; } /* 真ん中の線を消す */
+  .menu-btn.open span:nth-child(2) { opacity: 0; } 
   .menu-btn.open span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
 }
