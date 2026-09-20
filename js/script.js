@@ -75,3 +75,30 @@ menuBtn.addEventListener("click", function() {
     menuBtn.classList.toggle("open");
     navMenu.classList.toggle("open");
 });
+
+// =======================================================
+// 🔼 3. 「上へ戻る」ボタンのコントロール機能
+// =======================================================
+const pageTopBtn = document.getElementById("page-top-btn");
+
+// 🔄 画面のスクロールを見張る処理
+window.addEventListener("scroll", function() {
+    // 💡 現在どれくらい下にスクロールしたか（px）を取得
+    const scrollAmount = window.scrollY;
+    
+    // ヘッダーの高さ（700px）を超えたら「show」をつけて表示、上に戻ったら消す
+    if (scrollAmount > 700) {
+        pageTopBtn.classList.add("show");
+    } else {
+        pageTopBtn.classList.remove("show");
+    }
+});
+
+// 👆 ボタンがクリックされた時の処理
+pageTopBtn.addEventListener("click", function() {
+    // 💡 1秒（1000ms）かけて、画面の一番上（y: 0）まで滑らかに戻す魔法の命令
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" // スムーズにスクロールさせる設定
+    });
+});

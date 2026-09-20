@@ -303,3 +303,42 @@ img {
   .menu-btn.open span:nth-child(2) { opacity: 0; } 
   .menu-btn.open span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
 }
+
+/* =======================================================
+   🔼 【新規追加】「上へ戻る」ボタンのデザイン
+   ======================================================= */
+.page-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #8ab4f8; /* オシャレなブルー */
+    color: #202124;            /* 矢印の色は濃いグレー */
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50%;        /* まん丸にする */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 99;               /* メニューの次くらいに手前に表示 */
+    
+    /* 💡 最初は透明にして、少し下にずらして隠しておく（アニメーション用） */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+/* 👇 マウスを乗せたときに少し明るくする */
+.page-top-btn:hover {
+    background-color: #aecbfa;
+    transform: translateY(-2px); /* ちょっと上に浮く */
+}
+
+/* 💡 JavaScriptで「show」がついたら、ふわっと浮かび上がらせる */
+.page-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
